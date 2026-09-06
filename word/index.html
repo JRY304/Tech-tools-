@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scribe — word processor</title>
+<link rel="stylesheet" href="css/app.css">
+<link rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+
+<header class="appbar">
+  <div class="brand">Scribe</div>
+
+  <div class="menu" id="file-menu">
+    <button class="mbtn" data-menu="file">File</button>
+    <div class="menu-pop" data-pop="file">
+      <button data-act="new">New document<kbd>Ctrl+Alt+N</kbd></button>
+      <button data-act="open">Open file…<kbd>Ctrl+O</kbd></button>
+      <button data-act="docs">Browse saved documents…</button>
+      <hr>
+      <button data-act="save">Save to browser<kbd>Ctrl+S</kbd></button>
+      <button data-act="save-docx">Download as .docx<kbd>Ctrl+Shift+S</kbd></button>
+      <button data-act="save-html">Download as .html</button>
+      <button data-act="save-txt">Download as .txt</button>
+      <button data-act="save-md">Download as .md</button>
+      <hr>
+      <button data-act="print">Print / Save as PDF<kbd>Ctrl+P</kbd></button>
+      <hr>
+      <button data-act="props">Document properties…</button>
+    </div>
+  </div>
+
+  <input id="doc-title" class="doc-title" value="Untitled document" spellcheck="false" aria-label="Document name">
+  <span id="save-state" class="save-state">saved</span>
+
+  <div class="appbar-right">
+    <button class="tbtn" data-act="toggle-outline" title="Navigation pane">☰ Outline</button>
+    <button class="tbtn" data-act="toggle-comments" title="Comments pane">💬 Comments</button>
+    <button class="tbtn" data-act="toggle-theme" title="Light / dark interface">◐</button>
+  </div>
+</header>
+
+<nav class="tabs" role="tablist">
+  <button class="tab is-active" data-tab="home">Home</button>
+  <button class="tab" data-tab="insert">Insert</button>
+  <button class="tab" data-tab="layout">Layout</button>
+  <button class="tab" data-tab="review">Review</button>
+  <button class="tab" data-tab="view">View</button>
+</nav>
+
+<div class="ribbon">
+  <!-- HOME -->
+  <div class="panel is-active" data-panel="home">
+    <div class="group">
+      <button class="tbtn" data-cmd="undo" title="Undo (Ctrl+Z)">↶</button>
+      <button class="tbtn" data-cmd="redo" title="Redo (Ctrl+Y)">↷</button>
+    </div>
+    <div class="group">
+      <select id="style-select" title="Paragraph style">
+        <option value="p">Body text</option>
+        <option value="h1">Title / Heading 1</option>
+        <option value="h2">Heading 2</option>
+        <option value="h3">Heading 3</option>
+        <option value="h4">Heading 4</option>
+        <option value="blockquote">Quote</option>
+        <option value="pre">Code block</option>
+      </select>
+    </div>
+    <div class="group">
+      <select id="font-select" title="Font">
+        <option value="Calibri, Carlito, sans-serif">Calibri</option>
+        <option value="Aptos, Calibri, sans-serif">Aptos</option>
+        <option value="Arial, Helvetica, sans-serif">Arial</option>
+        <option value="'Times New Roman', Tinos, serif">Times New Roman</option>
+        <option value="Georgia, serif">Georgia</option>
+        <option value="Garamond, serif">Garamond</option>
+        <option value="Verdana, sans-serif">Verdana</option>
+        <option value="'Trebuchet MS', sans-serif">Trebuchet MS</option>
+        <option value="'Courier New', monospace">Courier New</option>
+        <option value="Consolas, monospace">Consolas</option>
+      </select>
+      <select id="size-select" title="Font size (pt)">
+        <option>8</option><option>9</option><option>10</option><option selected>11</option>
+        <option>12</option><option>14</option><option>16</option><option>18</option>
+        <option>20</option><option>24</option><option>28</option><option>32</option>
+        <option>36</option><option>48</option><option>72</option>
+      </select>
+      <button class="tbtn" data-cmd="grow" title="Increase font size">A⁺</button>
+      <button class="tbtn" data-cmd="shrink" title="Decrease font size">A⁻</button>
+    </div>
+    <div class="group">
+      <button class="tbtn" data-cmd="bold" title="Bold (Ctrl+B)"><b>B</b></button>
+      <button class="tbtn" data-cmd="italic" title="Italic (Ctrl+I)"><i>I</i></button>
+      <button class="tbtn" data-cmd="underline" title="Underline (Ctrl+U)"><u>U</u></button>
+      <button class="tbtn" data-cmd="strikeThrough" title="Strikethrough"><s>S</s></button>
+      <button class="tbtn" data-cmd="superscript" title="Superscript">x²</button>
+      <button class="tbtn" data-cmd="subscript" title="Subscript">x₂</button>
+    </div>
+    <div class="group">
+      <label class="colorwrap" title="Text colour">A<input type="color" id="fore-color" value="#111111"></label>
+      <label class="colorwrap hl" title="Highlight colour">▮<input type="color" id="back-color" value="#ffe066"></label>
+      <button class="tbtn" data-cmd="removeFormat" title="Clear formatting">Clear</button>
+    </div>
+    <div class="group">
+      <button class="tbtn" data-cmd="justifyLeft" title="Align left"><svg viewBox="0 0 16 14" width="15" height="13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="2" y1="3" x2="14" y2="3"/><line x1="2" y1="7" x2="9" y2="7"/><line x1="2" y1="11" x2="12" y2="11"/></svg></button>
+      <button class="tbtn" data-cmd="justifyCenter" title="Centre"><svg viewBox="0 0 16 14" width="15" height="13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="2" y1="3" x2="14" y2="3"/><line x1="4" y1="7" x2="12" y2="7"/><line x1="3" y1="11" x2="13" y2="11"/></svg></button>
+      <button class="tbtn" data-cmd="justifyRight" title="Align right"><svg viewBox="0 0 16 14" width="15" height="13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="2" y1="3" x2="14" y2="3"/><line x1="7" y1="7" x2="14" y2="7"/><line x1="4" y1="11" x2="14" y2="11"/></svg></button>
+      <button class="tbtn" data-cmd="justifyFull" title="Justify"><svg viewBox="0 0 16 14" width="15" height="13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="2" y1="3" x2="14" y2="3"/><line x1="2" y1="7" x2="14" y2="7"/><line x1="2" y1="11" x2="14" y2="11"/></svg></button>
+      <select id="line-height" title="Line spacing">
+        <option value="1">1.0</option>
+        <option value="1.15" selected>1.15</option>
+        <option value="1.5">1.5</option>
+        <option value="2">2.0</option>
+        <option value="2.5">2.5</option>
+      </select>
+    </div>
+    <div class="group">
+      <button class="tbtn" data-cmd="insertUnorderedList" title="Bulleted list">• —</button>
+      <button class="tbtn" data-cmd="insertOrderedList" title="Numbered list">1. —</button>
+      <button class="tbtn" data-cmd="outdent" title="Decrease indent">⇤</button>
+      <button class="tbtn" data-cmd="indent" title="Increase indent">⇥</button>
+    </div>
+  </div>
+
+  <!-- INSERT -->
+  <div class="panel" data-panel="insert">
+    <div class="group">
+      <div class="menu">
+        <button class="tbtn wide" data-menu="table">▦ Table</button>
+        <div class="menu-pop pad" data-pop="table"><div id="grid-picker" class="grid-picker"></div><div class="grid-label" id="grid-label">Pick a size</div></div>
+      </div>
+      <button class="tbtn wide" data-act="insert-image">🖼 Image</button>
+      <button class="tbtn wide" data-act="insert-link">🔗 Link</button>
+    </div>
+    <div class="group">
+      <button class="tbtn wide" data-act="insert-pagebreak">⤓ Page break</button>
+      <button class="tbtn wide" data-cmd="insertHorizontalRule">— Rule</button>
+      <button class="tbtn wide" data-act="insert-date">📅 Date</button>
+      <div class="menu">
+        <button class="tbtn wide" data-menu="symbol">Ω Symbol</button>
+        <div class="menu-pop pad" data-pop="symbol"><div id="symbols" class="symbols"></div></div>
+      </div>
+    </div>
+    <div class="group" id="table-tools">
+      <span class="glabel">Table</span>
+      <button class="tbtn" data-act="row-above" title="Insert row above">↑+</button>
+      <button class="tbtn" data-act="row-below" title="Insert row below">↓+</button>
+      <button class="tbtn" data-act="col-left" title="Insert column left">←+</button>
+      <button class="tbtn" data-act="col-right" title="Insert column right">→+</button>
+      <button class="tbtn" data-act="del-row" title="Delete row">✕ row</button>
+      <button class="tbtn" data-act="del-col" title="Delete column">✕ col</button>
+      <button class="tbtn" data-act="del-table" title="Delete table">✕ table</button>
+      <button class="tbtn" data-act="toggle-header" title="Toggle header row">H row</button>
+      <button class="tbtn" data-act="toggle-borders" title="Toggle borders">▢</button>
+    </div>
+  </div>
+
+  <!-- LAYOUT -->
+  <div class="panel" data-panel="layout">
+    <div class="group">
+      <span class="glabel">Page</span>
+      <select id="page-size" title="Page size">
+        <option value="a4">A4 (210 × 297 mm)</option>
+        <option value="letter">Letter (8.5 × 11 in)</option>
+        <option value="legal">Legal (8.5 × 14 in)</option>
+        <option value="a5">A5 (148 × 210 mm)</option>
+      </select>
+      <select id="orientation" title="Orientation">
+        <option value="portrait">Portrait</option>
+        <option value="landscape">Landscape</option>
+      </select>
+      <select id="margins" title="Margins">
+        <option value="normal">Margins: normal (2.54 cm)</option>
+        <option value="narrow">Margins: narrow (1.27 cm)</option>
+        <option value="moderate">Margins: moderate</option>
+        <option value="wide">Margins: wide</option>
+      </select>
+    </div>
+    <div class="group">
+      <span class="glabel">Paragraph</span>
+      <label class="numlab">Space before <input type="number" id="space-before" min="0" max="72" step="2" value="0"> pt</label>
+      <label class="numlab">Space after <input type="number" id="space-after" min="0" max="72" step="2" value="8"> pt</label>
+      <label class="numlab">Indent <input type="number" id="indent-left" min="0" max="200" step="8" value="0"> px</label>
+    </div>
+    <div class="group">
+      <span class="glabel">Header / footer (.docx)</span>
+      <input id="header-text" class="txt" placeholder="Header text" spellcheck="false">
+      <input id="footer-text" class="txt" placeholder="Footer text" spellcheck="false">
+      <label class="chk"><input type="checkbox" id="page-numbers"> Page numbers</label>
+    </div>
+  </div>
+
+  <!-- REVIEW -->
+  <div class="panel" data-panel="review">
+    <div class="group">
+      <button class="tbtn wide" data-act="find">🔍 Find &amp; replace <kbd>Ctrl+F</kbd></button>
+      <button class="tbtn wide" data-act="add-comment">💬 New comment</button>
+      <button class="tbtn wide" data-act="word-count">Σ Word count</button>
+    </div>
+    <div class="group">
+      <label class="chk"><input type="checkbox" id="spellcheck" checked> Check spelling</label>
+      <label class="chk"><input type="checkbox" id="show-marks"> Show formatting marks</label>
+      <label class="chk"><input type="checkbox" id="readonly"> Read only</label>
+    </div>
+  </div>
+
+  <!-- VIEW -->
+  <div class="panel" data-panel="view">
+    <div class="group">
+      <span class="glabel">Zoom</span>
+      <button class="tbtn" data-act="zoom-out">−</button>
+      <input type="range" id="zoom" min="50" max="200" step="10" value="100">
+      <button class="tbtn" data-act="zoom-in">+</button>
+      <button class="tbtn" data-act="zoom-reset">100%</button>
+    </div>
+    <div class="group">
+      <label class="chk"><input type="checkbox" id="page-view" checked> Page layout</label>
+      <label class="chk"><input type="checkbox" id="focus-mode"> Focus mode</label>
+      <label class="chk"><input type="checkbox" id="ruler-on"> Ruler</label>
+    </div>
+  </div>
+</div>
+
+<div class="findbar" id="findbar" hidden>
+  <input id="find-input" class="txt" placeholder="Find" spellcheck="false">
+  <input id="replace-input" class="txt" placeholder="Replace with" spellcheck="false">
+  <label class="chk"><input type="checkbox" id="find-case"> Match case</label>
+  <label class="chk"><input type="checkbox" id="find-word"> Whole word</label>
+  <span class="find-count" id="find-count">0 / 0</span>
+  <button class="tbtn" data-act="find-prev">Prev</button>
+  <button class="tbtn" data-act="find-next">Next</button>
+  <button class="tbtn" data-act="replace-one">Replace</button>
+  <button class="tbtn" data-act="replace-all">Replace all</button>
+  <button class="tbtn" data-act="find-close">✕</button>
+</div>
+
+<main class="workspace">
+  <aside class="pane pane-left" id="outline-pane" hidden>
+    <div class="pane-head">Navigation</div>
+    <div id="outline" class="outline"></div>
+  </aside>
+
+  <div class="scroll" id="scroll">
+    <div class="ruler" id="ruler" hidden></div>
+    <div class="stage" id="stage">
+      <div class="sheet" id="sheet">
+        <div class="pagelines" id="pagelines" aria-hidden="true"></div>
+        <div class="editor" id="editor" contenteditable="true" spellcheck="true" role="textbox" aria-multiline="true"><p>Start typing.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <aside class="pane pane-right" id="comments-pane" hidden>
+    <div class="pane-head">Comments</div>
+    <div id="comments" class="comments"></div>
+  </aside>
+</main>
+
+<footer class="statusbar">
+  <span id="st-pages">Page 1 of 1</span>
+  <span id="st-words">0 words</span>
+  <span id="st-chars">0 characters</span>
+  <span id="st-sel"></span>
+  <span class="spacer"></span>
+  <span id="st-size">A4 portrait</span>
+  <span id="st-zoom">100%</span>
+</footer>
+
+<div class="modal" id="modal" hidden>
+  <div class="modal-box">
+    <div class="modal-head"><span id="modal-title">Title</span><button class="tbtn" data-act="modal-close">✕</button></div>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-foot" id="modal-foot"></div>
+  </div>
+</div>
+
+<input type="file" id="file-input" accept=".docx,.html,.htm,.txt,.md" hidden>
+<input type="file" id="image-input" accept="image/*" hidden>
+<div class="toast" id="toast" hidden></div>
+
+<script src="js/util.js"></script>
+<script src="js/zip.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/editor.js"></script>
+<script src="js/format.js"></script>
+<script src="js/tables.js"></script>
+<script src="js/outline.js"></script>
+<script src="js/findreplace.js"></script>
+<script src="js/comments.js"></script>
+<script src="js/docx-export.js"></script>
+<script src="js/docx-import.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/files.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

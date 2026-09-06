@@ -1,0 +1,20 @@
+/* print.css - what actually reaches the printer / PDF. */
+@page { size: A4 portrait; margin: 2.54cm; }
+
+html, body { height: auto; overflow: visible; background: #fff; }
+.appbar, .tabs, .ribbon, .findbar, .statusbar, .pane, .ruler, .modal, .toast, .pagelines { display: none !important; }
+.workspace, .scroll, .stage { display: block; overflow: visible; padding: 0; margin: 0; }
+.sheet { width: auto; box-shadow: none; min-height: 0; border-radius: 0; }
+.editor { padding: 0; min-height: 0; zoom: 1 !important; color: #000; }
+.stage { zoom: 1 !important; }
+
+.editor mark.find-hit { background: transparent; }
+.editor .cmt { background: transparent; border-bottom: 0; }
+.editor .pagebreak { border: 0; margin: 0; }
+.editor .pagebreak::after { content: none; }
+.editor h1, .editor h2, .editor h3, .editor h4 { break-after: avoid; page-break-after: avoid; }
+.editor p, .editor li, .editor blockquote { orphans: 2; widows: 2; }
+.editor table { page-break-inside: auto; }
+.editor tr { page-break-inside: avoid; }
+.editor thead { display: table-header-group; }
+.editor a { color: #000; text-decoration: underline; }
