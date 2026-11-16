@@ -1,0 +1,136 @@
+{
+ "video": "out/face_of_power.mp4",
+ "slide_secs": 4.5,
+ "title": [
+  "THE FACE",
+  "OF POWER"
+ ],
+ "subtitle": "The people running America in 2026, next to the people who held the same kind of power in 2000, in Europe and in Asia.",
+ "outro": [
+  "Who looks like",
+  "they should be",
+  "in charge?"
+ ],
+ "slides": [
+  {
+   "bottom_label": "USA",
+   "bottom_sub": "c. 2000",
+   "bottom_color": [
+    120,
+    140,
+    170
+   ],
+   "caption": "Same jobs. 26 years apart.",
+   "top": [
+    {
+     "key": "trump",
+     "name": "Donald Trump",
+     "role": "President",
+     "fy": 0.35
+    },
+    {
+     "key": "musk",
+     "name": "Elon Musk",
+     "role": "Tesla, SpaceX, xAI",
+     "fy": 0.3
+    }
+   ],
+   "bottom": [
+    {
+     "key": "clinton",
+     "name": "Bill Clinton",
+     "role": "President, 2000",
+     "fy": 0.35,
+     "zoom": 1.6
+    },
+    {
+     "key": "jobs",
+     "name": "Steve Jobs",
+     "role": "Apple CEO, 1997-2011",
+     "fx": 0.45,
+     "fy": 0.35
+    }
+   ]
+  },
+  {
+   "bottom_label": "EUROPE",
+   "bottom_sub": "2026",
+   "bottom_color": [
+    40,
+    90,
+    200
+   ],
+   "caption": "Same industries. Different vibe.",
+   "top": [
+    {
+     "key": "karp",
+     "name": "Alex Karp",
+     "role": "CEO, Palantir",
+     "fy": 0.3
+    },
+    {
+     "key": "amodei",
+     "name": "Dario Amodei",
+     "role": "CEO, Anthropic",
+     "fy": 0.3
+    }
+   ],
+   "bottom": [
+    {
+     "key": "klein",
+     "name": "Christian Klein",
+     "role": "CEO, SAP",
+     "fy": 0.3
+    },
+    {
+     "key": "mensch",
+     "name": "Arthur Mensch",
+     "role": "CEO, Mistral AI",
+     "fy": 0.22,
+     "zoom": 2.1,
+     "fx": 0.5
+    }
+   ]
+  },
+  {
+   "bottom_label": "ASIA",
+   "bottom_sub": "2026",
+   "bottom_color": [
+    200,
+    150,
+    40
+   ],
+   "caption": "Same scale. Calmer faces.",
+   "top": [
+    {
+     "key": "zuck",
+     "name": "Mark Zuckerberg",
+     "role": "CEO, Meta",
+     "fy": 0.3
+    },
+    {
+     "key": "bezos",
+     "name": "Jeff Bezos",
+     "role": "Founder, Amazon",
+     "fy": 0.3
+    }
+   ],
+   "bottom": [
+    {
+     "key": "ponyma",
+     "name": "Pony Ma",
+     "role": "CEO, Tencent",
+     "fy": 0.28,
+     "zoom": 1.45,
+     "fx": 0.5
+    },
+    {
+     "key": "leijun",
+     "name": "Lei Jun",
+     "role": "CEO, Xiaomi",
+     "fy": 0.3
+    }
+   ]
+  }
+ ]
+}
