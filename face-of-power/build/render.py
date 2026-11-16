@@ -69,7 +69,7 @@ for i,fr in enumerate(frames): fr.save(f'{OUT}/frame_{i:02d}.png')
 # video: gentle push-in per frame, crossfades
 fps=30; X=0.5; inputs=[]; fl=[]
 for i,dur in enumerate(durs):
-    inputs+=['-loop','1','-t',str(dur),'-i',f'{OUT}/frame_{i:02d}.png']
+    inputs+=['-framerate',str(fps),'-loop','1','-t',str(dur),'-i',f'{OUT}/frame_{i:02d}.png']
     nf=int(dur*fps)
     fl.append(f"[{i}:v]scale=2160:3840,zoompan=z='1+0.035*on/{nf}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=1:s={W}x{H}:fps={fps},setsar=1,format=yuv420p[v{i}]")
 prev='v0'; off=0
