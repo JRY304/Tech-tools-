@@ -1,6 +1,14 @@
 import json, urllib.request, urllib.parse, time, os, re, urllib.error, html, sys
 UA={'User-Agent':'PosterBuilder/1.0 (educational satire project)'}
+import subprocess
 def req(url,tries=6):
+    for i in range(tries):
+        r=subprocess.run(['curl','-sS','-m','30','-A','PosterBuilder/1.0 (satire poster)','-w','\n%{http_code}',url],capture_output=True)
+        body,_,code=r.stdout.rpartition(b'\n'); print('  ',code.decode(),flush=True)
+        if code==b'200': return body
+        time.sleep(8 if code==b'429' else 2)
+    return None
+def _old(url,tries=6):
     for i in range(tries):
         try: return urllib.request.urlopen(urllib.request.Request(url,headers=UA),timeout=30).read()
         except urllib.error.HTTPError as e:
@@ -8,7 +16,7 @@ def req(url,tries=6):
             if e.code!=429: return None
             time.sleep(min(ra,30)+2)
     return None
-picks=json.load(open('picks.json')); a=json.load(open('cands_all.json'))
+picks=json.load(open(sys.argv[1])); a=json.load(open('cands_all.json'))
 thumbs={t:u for v in a.values() for t,u in v}
 for k,t in picks.items():
     p=f'dl/full/{k}.jpg'
@@ -19,7 +27,7 @@ for k,t in picks.items():
     if b: open(p,'wb').write(b); print(k,'ok',len(b),flush=True)
     else: print(k,'FAILED',u,flush=True)
     time.sleep(1.5)
-if 'meta' in sys.argv:
+if len(sys.argv)>3:
     strip=lambda s: re.sub(r'\s+',' ',html.unescape(re.sub('<[^>]+>','',s or ''))).strip()
     q=urllib.parse.urlencode(dict(action='query',format='json',titles='|'.join(picks.values()),prop='imageinfo',iiprop='extmetadata',iiextmetadatafilter='Artist|LicenseShortName|ImageDescription'))
     b=req('https://commons.wikimedia.org/w/api.php?'+q,tries=30)
@@ -30,4 +38,4 @@ if 'meta' in sys.argv:
         em=pages[norm.get(t,t)]['imageinfo'][0]['extmetadata']
         meta[k]=dict(title=t,author=strip(em.get('Artist',{}).get('value'))[:90],license=strip(em.get('LicenseShortName',{}).get('value')),desc=strip(em.get('ImageDescription',{}).get('value'))[:160])
         print(k,meta[k],flush=True)
-    json.dump(meta,open('meta.json','w'),indent=1,ensure_ascii=False)
+    json.dump(meta,open(sys.argv[3],'w'),indent=1,ensure_ascii=False)

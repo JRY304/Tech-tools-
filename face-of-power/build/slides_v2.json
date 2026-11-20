@@ -1,0 +1,228 @@
+{
+ "video": "out2/face_of_power_v2.mp4",
+ "meta": "meta_v2.json",
+ "slide_secs": 4.5,
+ "title": [
+  "THE FACE",
+  "OF POWER"
+ ],
+ "subtitle": "American power, then and now. Same people, same offices, 25 years apart.",
+ "outro": [
+  "Power used to",
+  "look bored."
+ ],
+ "slides": [
+  {
+   "header": "THE GLOW-UP",
+   "top_label": "NOW",
+   "top_sub": "2021-2025",
+   "bottom_label": "THEN",
+   "bottom_sub": "2005-2011",
+   "bottom_color": [
+    120,
+    140,
+    170
+   ],
+   "caption": "Same men. New bodies, new attitude.",
+   "top": [
+    {
+     "key": "bezos_n",
+     "name": "Jeff Bezos",
+     "role": "2021",
+     "fx": 0.3,
+     "fy": 0.33,
+     "zoom": 1.7
+    },
+    {
+     "key": "musk_n",
+     "name": "Elon Musk",
+     "role": "CPAC, 2025",
+     "fx": 0.55,
+     "fy": 0.38,
+     "zoom": 1.15
+    }
+   ],
+   "bottom": [
+    {
+     "key": "bezos_t",
+     "name": "Jeff Bezos",
+     "role": "2005",
+     "fx": 0.5,
+     "fy": 0.4
+    },
+    {
+     "key": "musk_t",
+     "name": "Elon Musk",
+     "role": "2011",
+     "fy": 0.3
+    }
+   ]
+  },
+  {
+   "header": "THE MAKEOVER",
+   "top_label": "NOW",
+   "top_sub": "2025",
+   "bottom_label": "THEN",
+   "bottom_sub": "c. 2011",
+   "bottom_color": [
+    120,
+    140,
+    170
+   ],
+   "caption": "Gold chain. Full contour.",
+   "top": [
+    {
+     "key": "zuck_n",
+     "name": "Mark Zuckerberg",
+     "role": "Meta, 2025",
+     "fy": 0.3
+    },
+    {
+     "key": "noem_n",
+     "name": "Kristi Noem",
+     "role": "Homeland Security, 2025",
+     "fy": 0.3
+    }
+   ],
+   "bottom": [
+    {
+     "key": "zuck_t",
+     "name": "Mark Zuckerberg",
+     "role": "Facebook, 2011",
+     "fy": 0.3
+    },
+    {
+     "key": "noem_t",
+     "name": "Kristi Noem",
+     "role": "Congress, c. 2011",
+     "fy": 0.35
+    }
+   ]
+  },
+  {
+   "header": "THE CABINET",
+   "top_label": "NOW",
+   "top_sub": "2025",
+   "bottom_label": "THEN",
+   "bottom_sub": "c. 2000",
+   "bottom_color": [
+    120,
+    140,
+    170
+   ],
+   "caption": "Same departments, 25 years apart.",
+   "top": [
+    {
+     "key": "hegseth",
+     "name": "Pete Hegseth",
+     "role": "Secretary of Defense",
+     "fy": 0.3
+    },
+    {
+     "key": "rfk",
+     "name": "Robert F. Kennedy Jr.",
+     "role": "Health & Human Services",
+     "fy": 0.3
+    }
+   ],
+   "bottom": [
+    {
+     "key": "cohen",
+     "name": "William Cohen",
+     "role": "Secretary of Defense",
+     "fy": 0.3
+    },
+    {
+     "key": "shalala",
+     "name": "Donna Shalala",
+     "role": "Health & Human Services",
+     "fy": 0.3
+    }
+   ]
+  },
+  {
+   "header": "THE PODIUM",
+   "top_label": "NOW",
+   "top_sub": "2025",
+   "bottom_label": "THEN",
+   "bottom_sub": "c. 2000",
+   "bottom_color": [
+    120,
+    140,
+    170
+   ],
+   "caption": "Same jobs. New casting.",
+   "top": [
+    {
+     "key": "leavitt",
+     "name": "Karoline Leavitt",
+     "role": "Press Secretary",
+     "fy": 0.35
+    },
+    {
+     "key": "bondi",
+     "name": "Pam Bondi",
+     "role": "Attorney General",
+     "fy": 0.3
+    }
+   ],
+   "bottom": [
+    {
+     "key": "lockhart",
+     "name": "Joe Lockhart",
+     "role": "Press Secretary, 1998-2000",
+     "fy": 0.3
+    },
+    {
+     "key": "reno",
+     "name": "Janet Reno",
+     "role": "Attorney General, 1993-2001",
+     "fy": 0.35
+    }
+   ]
+  },
+  {
+   "header": "THE TOP",
+   "top_label": "NOW",
+   "top_sub": "2023-2025",
+   "bottom_label": "THEN",
+   "bottom_sub": "c. 2000",
+   "bottom_color": [
+    120,
+    140,
+    170
+   ],
+   "caption": "From statesmen to showmen.",
+   "top": [
+    {
+     "key": "trump_n",
+     "name": "Donald Trump",
+     "role": "President, 2025",
+     "fy": 0.35
+    },
+    {
+     "key": "karp",
+     "name": "Alex Karp",
+     "role": "CEO, Palantir",
+     "fy": 0.3
+    }
+   ],
+   "bottom": [
+    {
+     "key": "clinton",
+     "name": "Bill Clinton",
+     "role": "President, 2000",
+     "fy": 0.35,
+     "zoom": 1.6
+    },
+    {
+     "key": "jobs",
+     "name": "Steve Jobs",
+     "role": "CEO, Apple",
+     "fx": 0.45,
+     "fy": 0.35
+    }
+   ]
+  }
+ ]
+}

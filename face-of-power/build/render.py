@@ -1,6 +1,6 @@
 import json, sys, os, subprocess
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
-cfg=json.load(open(sys.argv[1])); meta=json.load(open('meta.json')); OUT=sys.argv[2]; os.makedirs(OUT,exist_ok=True)
+cfg=json.load(open(sys.argv[1])); meta=json.load(open(cfg.get('meta','meta.json'))); OUT=sys.argv[2]; os.makedirs(OUT,exist_ok=True)
 W,H=1080,1920; BG=(14,14,16); FG=(240,238,232); MUTED=(150,148,142)
 F='/usr/share/fonts/opentype/inter/'
 f=lambda w,s: ImageFont.truetype(F+{'b':'Inter-Bold.otf','x':'Inter-ExtraBold.otf','r':'Inter-Regular.otf','s':'Inter-SemiBold.otf','k':'InterDisplay-Black.otf'}[w],s)
@@ -24,10 +24,10 @@ def section_label(d,y,text,color,sub):
     tw=d.textlength(text,font=f('k',44)); d.text((54+tw+18,y+12),sub,font=f('s',26),fill=MUTED)
 def slide(s,i,n):
     c=Image.new('RGB',(W,H),BG); d=ImageDraw.Draw(c)
-    d.text((30,48),'THE FACE OF POWER',font=f('x',30),fill=MUTED)
+    d.text((30,48),s.get('header',cfg.get('header','THE FACE OF POWER')),font=f('x',30),fill=MUTED)
     t=f'{i}/{n}'; d.text((W-30-d.textlength(t,font=f('s',30)),48),t,font=f('s',30),fill=MUTED)
     PH=700; PW=(W-30*2-20)//2
-    section_label(d,130,'USA',(214,40,40),'2026')
+    section_label(d,130,s.get('top_label','USA'),(214,40,40),s.get('top_sub','2026'))
     for j,p in enumerate(s['top']): tile(c,p,30+j*(PW+20),196,PW,PH)
     d.text((W/2,955),'vs.',font=f('k',58),fill=FG,anchor='mm')
     section_label(d,1000,s['bottom_label'],tuple(s['bottom_color']),s['bottom_sub'])
